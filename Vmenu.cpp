@@ -1,31 +1,41 @@
 #include<iostream>
 #include<conio.h>
-#include<math.h>
-#include<Windows.h>
-#include<time.h>
-using namespace std;
+#include<windows.h>
+
 using namespace System;
+using namespace std;
+
+
 #define teclaArriba 72
 #define teclaAbajo 80
 #define teclaIzquierda 75
 #define teclaDerecha 77
 #define teclaEspacio 32 
+
 void pixelfondo(int n) {
 	for (int i = 0; i < n; i++) {
-		cout << char(184);
+		cout << (char)184;
 	}
 }
-void cambiarColor(int x) {
-	SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), x);
-}
-void pixel(int n, int color) {
-	cambiarColor(color);
-	for (int i = 0; i < n; i++) {
-		cout << char(219);
+void pixel(int x, int n) {
+	ConsoleColor color;
+
+	if (n == 1)color = ConsoleColor::Blue;
+	if (n == 2)color = ConsoleColor::Red;
+	if (n == 3)color = ConsoleColor::Cyan;
+
+	Console::ForegroundColor = color;
+	for (int i = 0; i < x; i++) {
+		cout << (char)219;
 	}
 }
 void Seega(int x, int y) {
-		int n = 1 + rand() % 8;
+	Random r;
+	int n = r.Next(1, 4);
+	for (int i = 0; i < n; i++) {
+		cout << (char)219;
+	}
+
 		Console::SetCursorPosition(x, y);
 		pixel(10, n);
 		Console::SetCursorPosition(x, y + 1);
@@ -187,28 +197,16 @@ void Seega(int x, int y) {
 		pixel(3, n);
 		Sleep( 100);
 }
+
 void puntero(int x, int y) {
 	Console::SetCursorPosition(x, y);
-	cout << char(201) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(187) << endl;
-	Console::SetCursorPosition(x, y+1);
-	cout << char(186);
-	Console::SetCursorPosition(x+16, y + 1);
-	cout<<char(186) << endl;
-	Console::SetCursorPosition(x, y+2);
-	cout << char(200) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(188) << endl;
-	
-}
-void fondo() {
-	Console::SetCursorPosition(7, 1);
-	pixelfondo(72);
-	for (int i = 0; i < 14; i++) {
-		Console::SetCursorPosition(7, 2+i);
-		pixelfondo(1);
-		Console::SetCursorPosition(78, 2 + i);
-		pixelfondo(1);
-	}
-	Console::SetCursorPosition(7, 16);
-	pixelfondo(72);
+	cout << (char)201 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << char(187) << endl;
+	Console::SetCursorPosition(x, y + 1);
+	cout << (char)186;
+	Console::SetCursorPosition(x + 16, y + 1);
+	cout << (char)186 << endl;
+	Console::SetCursorPosition(x, y + 2);
+	cout << char(200) << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << char(188) << endl;
 
 }
 void menu(int x, int y) {
@@ -224,6 +222,16 @@ void menu(int x, int y) {
 	cout << "SALIR DEL JUEGO";
 	Console::SetCursorPosition(x + 24, y + 5);
 	cout << "APRIETEAQUI=GAY";
+	Console::SetCursorPosition(7, 1);
+	pixelfondo(72);
+	for (int i = 0; i < 14; i++) {
+		Console::SetCursorPosition(7, 2+i);
+		pixelfondo(1);
+		Console::SetCursorPosition(78, 2 + i);
+		pixelfondo(1);
+	}
+	Console::SetCursorPosition(7, 16);
+	pixelfondo(72);
 }
 int menufuncional(int x, int y) {
 	int a = y;
@@ -231,7 +239,6 @@ int menufuncional(int x, int y) {
 	int respuesta;				// 1 =2 jugadores, 2= 1 JUGADOR 3 = CERRAR EL JUEGO
 	char tecla;
 	while (tecla != teclaEspacio) {
-		fondo();
 		Seega(10, 3);
 		menu(b, a);
 		puntero(x+5, y+2);
@@ -307,19 +314,19 @@ void instrucciones() {
 	Console::SetCursorPosition(80, 5);
 	cout << "SCROLL";
 	Console::SetCursorPosition(83, 6);
-	cout << char(203);
+	cout << (char)203;
 	for (int i = 0; i < 7; i++) {
-		Console::SetCursorPosition(83, 7+i);
-		cout << char(186);
+		Console::SetCursorPosition(83, 7 + i);
+		cout << (char)186;
 	}
 	Console::SetCursorPosition(82, 12);
-	cout << char(186);
+	cout << (char)186;
 	Console::SetCursorPosition(81, 11);
-	cout << char(186);
+	cout << (char)186;
 	Console::SetCursorPosition(84, 12);
-	cout << char(186);
+	cout << (char)186;
 	Console::SetCursorPosition(85, 11);
-	cout << char(186);
+	cout << (char)186;
 	// Instrucciones
 	Console::SetCursorPosition(10, 2);
 	cout << "1.Cada jugador tiene 12 fichas de un color (blancas o negras) y las \n";
@@ -377,13 +384,13 @@ void instrucciones() {
 	cout << "mayor cantidad de fichas, si tienen la misma cantidad es un empate.";
 	Console::SetCursorPosition(13,31);
 	//RECUADRO
-	cout << char(201) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(187) << endl;
+	cout << (char)201 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << char(187) << endl;
 	Console::SetCursorPosition(13, 31 + 1);
-	cout << char(186);
+	cout << (char)186;
 	Console::SetCursorPosition(13 + 40, 31 + 1);
-	cout << char(186) << endl;
+	cout << (char)186 << endl;
 	Console::SetCursorPosition(13, 31 + 2);
-	cout << char(200) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(188) << endl;
+	cout << char(200) << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << (char)205 << char(188) << endl;
 	//Texto
 	Console::SetCursorPosition(13 + 2, 31 + 1);
 	cout <<"APRETAR ESPACIO PARA REGRESAR AL MENU" << endl;
@@ -392,7 +399,7 @@ void Seleccion(int *respuesta) {
 	switch (*respuesta)
 	{
 	case 1:
-
+		
 		break;
 	case 2:
 
@@ -418,7 +425,7 @@ void Seleccion(int *respuesta) {
 	}
 }
 int main() {
-	srand(time(NULL));
+	Console::CursorVisible = false;
 	int* respuesta = new int;
 	Console::SetWindowSize(86, 25);
 	while (*respuesta != 3 && *respuesta != 1 && *respuesta != 2) {
