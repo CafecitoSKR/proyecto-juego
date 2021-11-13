@@ -223,7 +223,7 @@ void menu(int x, int y) {
 	Console::SetCursorPosition(x + 6, y + 5);
 	cout << "SALIR DEL JUEGO";
 	Console::SetCursorPosition(x + 24, y + 5);
-	cout << "XD";
+	cout << "APRIETEAQUI=GAY";
 }
 int menufuncional(int x, int y) {
 	int a = y;
@@ -393,16 +393,18 @@ void Seleccion(int *respuesta) {
 	{
 	case 1:
 
-			break;
+		break;
 	case 2:
 
 		break;
 	case 3:
-
+		exit(0);
 		break;
 
 	case 4:
 		instrucciones();
+		_getch();
+		system("cls");
 		break;
 
 	case 5:
@@ -419,8 +421,10 @@ int main() {
 	srand(time(NULL));
 	int* respuesta = new int;
 	Console::SetWindowSize(86, 25);
-	*respuesta = menufuncional(25, 17);
-	Seleccion(respuesta);
+	while (*respuesta != 3 && *respuesta != 1 && *respuesta != 2) {
+		*respuesta = menufuncional(25, 17);
+		Seleccion(respuesta);
+	}
 	
 	_getch();
 }
