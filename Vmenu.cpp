@@ -292,11 +292,135 @@ int menufuncional(int x, int y) {
 
 	}
 }
+void instrucciones() {
+	Console::SetCursorPosition(7, 1);
+	pixelfondo(72);
+	for (int i = 0; i < 32; i++) {
+		Console::SetCursorPosition(7, 2 + i);
+		pixelfondo(1);
+		Console::SetCursorPosition(78, 2 + i);
+		pixelfondo(1);
+	}
+	Console::SetCursorPosition(7, 34);
+	pixelfondo(72);
+	//FLECHA
+	Console::SetCursorPosition(80, 5);
+	cout << "SCROLL";
+	Console::SetCursorPosition(83, 6);
+	cout << char(203);
+	for (int i = 0; i < 7; i++) {
+		Console::SetCursorPosition(83, 7+i);
+		cout << char(186);
+	}
+	Console::SetCursorPosition(82, 12);
+	cout << char(186);
+	Console::SetCursorPosition(81, 11);
+	cout << char(186);
+	Console::SetCursorPosition(84, 12);
+	cout << char(186);
+	Console::SetCursorPosition(85, 11);
+	cout << char(186);
+	// Instrucciones
+	Console::SetCursorPosition(10, 2);
+	cout << "1.Cada jugador tiene 12 fichas de un color (blancas o negras) y las \n";
+	Console::SetCursorPosition(10, 3);
+	cout << "va colocando de a dos por turno sobre el tablero.";
+	Console::SetCursorPosition(10, 4);
+	cout << "2.Las siguientes fichas pueden ser colocadas en cualquier casilla \n";
+	Console::SetCursorPosition(10, 5);
+	cout << ", excepto la del centro del tablero marcada con una x que "<<endl;
+	Console::SetCursorPosition(10, 6);
+	cout << "permanecerá vacía.";
+	Console::SetCursorPosition(10, 7);
+	cout << "3.El jugador que coloca el último par de fichas comienza la";
+	Console::SetCursorPosition(10, 8);
+	cout << " siguiente etapa del juego.";
+	Console::SetCursorPosition(10, 9);
+	cout << "4.Las fichas se mueven de manera ortogonal como el rey del Ajedrez";
+	Console::SetCursorPosition(10, 10);
+	cout<<"a una casilla adyacente vacía, incluyendo la del centro";
+	Console::SetCursorPosition(10, 11);
+	cout << "5. No pueden moverse en diagonal. ";
+	Console::SetCursorPosition(10, 12);
+	cout << "6.Una ficha es capturada y removida si ésta es encerrada entre dos";
+	Console::SetCursorPosition(10, 13);
+	cout << " fichas contrarias (no en sentido diagonal.";
+	Console::SetCursorPosition(10, 14);
+	cout << "7.Un solo movimiento puede implicar el encierro y la captura";
+	Console::SetCursorPosition(10, 15);
+	cout << "de varias piezas a la vez.";
+	Console::SetCursorPosition(10, 16);
+	cout << "8. El jugador que realiza una captura puede seguir moviendo";
+	Console::SetCursorPosition(10, 17);
+	cout << "la misma ficha que realizó el último movimiento";
+	Console::SetCursorPosition(10, 18);
+	cout << "mientras siga capturando.";
+	Console::SetCursorPosition(10, 19);
+	cout << "9.Una ficha puede colocarse entre dos fichas contrarias";
+	Console::SetCursorPosition(10, 20);
+	cout << " sin ser capturada y la ficha que ocupa la casilla";
+	Console::SetCursorPosition(10, 21);
+	cout << " central (marcada con x) no puede ser capturada";
+	Console::SetCursorPosition(10, 22);
+	cout << "10.Cuando un jugador no puede mover le pasa el turno al ";
+	Console::SetCursorPosition(10, 23);
+	cout << "contrario. Se gana si se capturan todas las fichas contrarias.";
+	Console::SetCursorPosition(10, 24);
+	cout << " Cada jugador puede construir una barrera (o muro) con fichas detrás";
+	Console::SetCursorPosition(10, 25);
+	cout << "de la cual solo se encuentran sus propias fichas que pueden moverse ";
+	Console::SetCursorPosition(10, 26);
+	cout << "sin peligro de ser capturadas.";
+	Console::SetCursorPosition(10, 27);
+	cout << "11.En el caso de existir una barrera gana el jugador que tiene la";
+	Console::SetCursorPosition(10, 28);
+	cout << "mayor cantidad de fichas, si tienen la misma cantidad es un empate.";
+	Console::SetCursorPosition(13,31);
+	//RECUADRO
+	cout << char(201) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(187) << endl;
+	Console::SetCursorPosition(13, 31 + 1);
+	cout << char(186);
+	Console::SetCursorPosition(13 + 40, 31 + 1);
+	cout << char(186) << endl;
+	Console::SetCursorPosition(13, 31 + 2);
+	cout << char(200) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(205) << char(188) << endl;
+	//Texto
+	Console::SetCursorPosition(13 + 2, 31 + 1);
+	cout <<"APRETAR ESPACIO PARA REGRESAR AL MENU" << endl;
+}
+void Seleccion(int *respuesta) {
+	switch (*respuesta)
+	{
+	case 1:
 
+			break;
+	case 2:
+
+		break;
+	case 3:
+
+		break;
+
+	case 4:
+		instrucciones();
+		break;
+
+	case 5:
+		
+		break;
+	case 6:
+
+		break;
+	default:
+		break;
+	}
+}
 int main() {
 	srand(time(NULL));
+	int* respuesta = new int;
 	Console::SetWindowSize(86, 25);
-	cout<<menufuncional(25, 17);
+	*respuesta = menufuncional(25, 17);
+	Seleccion(respuesta);
 	
 	_getch();
 }
